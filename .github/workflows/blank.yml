@@ -32,6 +32,7 @@ jobs:
 
       - name: archive jar files
         uses: actions/upload-artifact@v4
+        with:
           name: ferdisPetclinicJar
           path: target/*.jar
           
