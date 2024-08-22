@@ -29,3 +29,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: package
         run: ./mvnw package
+
+      - name: archive jar files
+        uses: actions/upload-artifact@v4
+          name: ferdisPetclinicJar
+          path: target/*.jar
+          
