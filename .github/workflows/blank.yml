@@ -8,13 +8,14 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
-      - name: package
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Project
         run: ./mvnw package
 
-      - name: archive jar files
+      - name: Archive JAR Files
         uses: actions/upload-artifact@v4
         with:
           name: ferdisPetclinicJar
           path: target/*.jar
-          
