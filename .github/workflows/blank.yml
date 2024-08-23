@@ -1,19 +1,29 @@
 name: test
+
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+
 jobs:
-  build:
+  checkout:
     runs-on: self-hosted
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+  build:
+    runs-on: self-hosted
+    needs: checkout  # This ensures the build job runs after the checkout job
+    steps:
       - name: Build Project
         run: ./mvnw package
 
+  archive:
+    runs-on: self-hosted
+    needs: build  # This ensures the archive job runs after the build job
+    steps:
       - name: Archive JAR Files
         uses: actions/upload-artifact@v4
         with:
