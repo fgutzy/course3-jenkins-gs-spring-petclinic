@@ -39,6 +39,6 @@ jobs:
             })
 
             return comment.data.id;
-        -run: echo 'comment id=${{ steps.issue_script.outputs.result }}'
+        - run: echo 'comment id=${{ steps.issue_script.outputs.result }}'
         
   
