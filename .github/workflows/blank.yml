@@ -23,7 +23,7 @@ jobs:
       - name: heck java
         shell: pwsh
         run: echo $env:JAVA_HOME
-      -name: check java 
+      - name: check java 
         shell: cmd
         run: echo %JAVA_HOME%
       - name: package
