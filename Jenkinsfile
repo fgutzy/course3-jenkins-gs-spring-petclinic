@@ -2,24 +2,14 @@ pipeline {
     agent any
     
     stages{
-        stage("build"){
+        stage("test"){
             steps {
-                sh "mvn package"
-            }
-        }
-        stage("capture"){
-            steps {
-                archiveArtifacts '**/target/*.jar'
+                sh "mvn test"
             }
         }
         stage("testResults"){
             steps{
                 junit stdioRetention: '', testResults: '**/target/surefire-reports/TEST*.xml'
-            }
-        }
-        stage("codeCoverage"){
-            steps{
-                jacoco()
             }
         }
     }
