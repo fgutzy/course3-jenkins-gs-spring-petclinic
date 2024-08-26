@@ -14,8 +14,11 @@ pipeline {
         }
     }
     post {
-        always {
-            echo "finally"
+        success {
+            githubNotify context: 'Jenkins Build', description: 'Build successful', status: 'SUCCESS'
+        }
+        failure {
+            githubNotify context: 'Jenkins Build', description: 'Build failed', status: 'FAILURE'
         }
     }
 }
