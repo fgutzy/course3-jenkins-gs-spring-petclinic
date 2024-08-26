@@ -1,12 +1,12 @@
 pipeline {
     agent any
     
-    stage("Checkout") {
+    stages{
+        stage("Checkout") {
             steps {
                 checkout scm
             }
         }
-    stages{
         stage("test"){
             steps {
                 sh "mvn test"
