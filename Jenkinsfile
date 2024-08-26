@@ -17,19 +17,10 @@ pipeline {
                 junit testResults: '**/target/surefire-reports/TEST*.xml'
             }
         }
-    }
-    post {
-        success {
-            step([$class: 'GitHubCommitStatusSetter', 
-                  reposSource: [$class: 'AnyDefinedRepositorySource'], 
-                  contextSource: [$class: 'DefaultCommitContextSource'], 
-                  statusResultSource: [$class: 'DefaultStatusResultSource']])
-        }
-        failure {
-            step([$class: 'GitHubCommitStatusSetter', 
-                  reposSource: [$class: 'AnyDefinedRepositorySource'], 
-                  contextSource: [$class: 'DefaultCommitContextSource'], 
-                  statusResultSource: [$class: 'DefaultStatusResultSource']])
+         stage("capture"){
+            steps {
+                archiveArtifacts '**/target/*.jar'
+            }
         }
     }
 }
