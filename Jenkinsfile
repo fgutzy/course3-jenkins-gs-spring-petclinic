@@ -5,6 +5,9 @@ pipeline {
         stage("Checkout") {
             steps {
                 checkout scm
+                sh 'env'  // Print all environment variables
+                sh 'which nohup'  // Check if nohup exists and where it's located
+                sh 'type nohup'   // On Unix systems, this shows the definition of nohup if it's a shell alias or function
             }
         }
         stage("Test") {
