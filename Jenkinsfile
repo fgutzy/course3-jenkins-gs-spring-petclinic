@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Test") {
             steps {
-                bat "mvn test"
+                bat "./mvnw test"
             }
         }
         stage("Test Results") {
