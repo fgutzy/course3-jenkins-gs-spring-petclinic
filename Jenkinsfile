@@ -20,14 +20,18 @@ pipeline {
     }
     post {
         success {
-            setGitHubCommitStatus context: 'Jenkins Build',
-                                  description: 'Build successful',
-                                  state: 'SUCCESS'
+            step([$class: 'GitHubCommitStatusSetter', 
+                  reposSource: [$class: 'AnyDefinedRepositorySource'], 
+                  contextSource: [$class: 'DefaultCommitContextSource'], 
+                  statusResultSource: [$class: 'ConditionalStatusResultSource', 
+                                      results: [[buildStatus: 'SUCCESS', state: 'success']]]])
         }
         failure {
-            setGitHubCommitStatus context: 'Jenkins Build',
-                                  description: 'Build failed',
-                                  state: 'FAILURE'
+            step([$class: 'GitHubCommitStatusSetter', 
+                  reposSource: [$class: 'AnyDefinedRepositorySource'], 
+                  contextSource: [$class: 'DefaultCommitContextSource'], 
+                  statusResultSource: [$class: 'ConditionalStatusResultSource', 
+                                      results: [[buildStatus: 'FAILURE', state: 'failure']]]])
         }
     }
 }
