@@ -15,10 +15,10 @@ pipeline {
     }
     post {
         success {
-            setGitHubCommitStatus state: 'SUCCESS', context: 'Jenkins Build', message: 'Build successful'
+        githubNotify context: 'Jenkins Build', description: 'Build successful', status: 'SUCCESS'
         }
         failure {
-            setGitHubCommitStatus state: 'FAILURE', context: 'Jenkins Build', message: 'Build failed'
+            githubNotify context: 'Jenkins Build', description: 'Build failed', status: 'FAILURE'
         }
     }
 }
