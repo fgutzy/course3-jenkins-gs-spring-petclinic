@@ -23,13 +23,13 @@ pipeline {
             step([$class: 'GitHubCommitStatusSetter', 
                   reposSource: [$class: 'AnyDefinedRepositorySource'], 
                   contextSource: [$class: 'DefaultCommitContextSource'], 
-                  statusResultSource: [$class: 'DefaultStatusResultSource', status: 'SUCCESS']])
+                  statusResultSource: [$class: 'DefaultStatusResultSource']])
         }
         failure {
             step([$class: 'GitHubCommitStatusSetter', 
                   reposSource: [$class: 'AnyDefinedRepositorySource'], 
                   contextSource: [$class: 'DefaultCommitContextSource'], 
-                  statusResultSource: [$class: 'DefaultStatusResultSource', status: 'FAILURE']])
+                  statusResultSource: [$class: 'DefaultStatusResultSource']])
         }
     }
 }
