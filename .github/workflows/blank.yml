@@ -14,9 +14,18 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      - run: mvn package
+        
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' 
+          java-version: '21'
+
+      - name: Build with Maven
+        run: mvn package
+        
       - uses: softprops/action-gh-release@v2.0.8
         with:
-          files: /target/*.jar
+          files: target/*.jar
           body: "Binaries of the Costum Spring Petclinic"
           tag_name: ${{ github.ref_name }}
